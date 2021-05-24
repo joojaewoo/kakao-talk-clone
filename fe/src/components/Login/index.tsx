@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { Container, InnerContainer, SignIn, TableCell } from './styled';
-import Logo from './logo';
-import Input from './input';
+import Logo from './Logo';
+import Input from './Input';
 
 const Login: FC = () => (
   <Container>
@@ -14,7 +14,7 @@ const Login: FC = () => (
     </InnerContainer>
     <SignIn>
       <TableCell>
-        <Link href="/singin">회원가입</Link>
+        <Link href="/signup">회원가입</Link>
       </TableCell>
     </SignIn>
   </Container>
