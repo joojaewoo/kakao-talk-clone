@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './index';
 
 export default {
-  title: 'LoginPage',
+  title: 'Login/LoginPage',
   component: Login,
   argTypes: {
     backgroundColor: { control: 'color' },
