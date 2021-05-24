@@ -41,6 +41,10 @@ const GlobalStyle = () => (
           max-width: 375px;
           max-height: 812px;
           border: 1px solid black;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
     `}
