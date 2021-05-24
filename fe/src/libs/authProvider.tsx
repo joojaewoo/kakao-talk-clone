@@ -20,7 +20,11 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
     `,
   );
 
-  if (router.pathname.includes('login') || router.pathname.includes('callback'))
+  if (
+    router.pathname.includes('login') ||
+    router.pathname.includes('callback') ||
+    router.pathname.includes('signup')
+  )
     return <>{children}</>;
 
   if (data) return <>{children}</>;
