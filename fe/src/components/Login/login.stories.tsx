@@ -1,4 +1,6 @@
 import React from 'react';
+import { ApolloProvider } from '@apollo/client';
+import getApolloClient from '../../libs/apolloClient';
 import Login from './index';
 
 export default {
@@ -9,4 +11,8 @@ export default {
   },
 };
 
-export const Default = () => <Login />;
+export const Default = () => (
+  <ApolloProvider client={getApolloClient()}>
+    <Login />
+  </ApolloProvider>
+);
