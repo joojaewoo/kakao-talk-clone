@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactChild } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { MY_INFO } from '../graphql/user';
 
 interface Props {
   children: ReactChild;
@@ -8,17 +9,7 @@ interface Props {
 
 const AuthProvider: FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
-  const { data, error } = useQuery(
-    gql`
-      query {
-        myInfo {
-          _id
-          email
-          nickName
-        }
-      }
-    `,
-  );
+  const { data, error } = useQuery(MY_INFO);
 
   if (
     router.pathname.includes('login') ||

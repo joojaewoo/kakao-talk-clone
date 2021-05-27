@@ -1,13 +1,8 @@
 import React, { FC, useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import router from 'next/router';
+import { LOCAL_LOGIN } from '../../../graphql/user';
 import { StyledInput, StyledButton } from './styled';
-
-const LOCAL_LOGIN = gql`
-  mutation ($email: String!, $password: String!) {
-    login(email: $email, password: $password)
-  }
-`;
 
 const Input: FC = () => {
   const [email, setEmail] = useState('');
