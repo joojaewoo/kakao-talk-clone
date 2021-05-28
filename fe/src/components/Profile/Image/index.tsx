@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import UserIcon from '../../Reusable/Icons/User';
-import { Container, NameContainer } from './styled';
+import ImageComponent from '../../Reusable/Image';
+import NameContainer from './styled';
 
 interface Props {
   imageUrl?: string;
@@ -9,7 +9,7 @@ interface Props {
 
 const Image: FunctionComponent<Props> = ({ imageUrl, name }) => (
   <>
-    <Container>{imageUrl ? <img src={imageUrl} alt="profile" /> : <UserIcon />}</Container>
+    <ImageComponent imageUrl={imageUrl} width="110px" height="110px" />
     <NameContainer>{name}</NameContainer>
   </>
 );
