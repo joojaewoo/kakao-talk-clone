@@ -1,6 +1,6 @@
 import { InMemoryCache, createHttpLink, ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
-export default (() => {
+export const getApolloClient = (() => {
   let apolloClient: ApolloClient<NormalizedCacheObject>;
   return () => {
     if (!apolloClient) {
@@ -15,3 +15,13 @@ export default (() => {
     return apolloClient;
   };
 })();
+
+export const initializeApollo = (initialState: NormalizedCacheObject = {}) => {
+  const apolloClient = getApolloClient();
+  if (initialState) {
+    const existingCache = apolloClient.extract();
+    const data = Object.assign(existingCache, initialState);
+    apolloClient.cache.restore(data);
+  }
+  return apolloClient;
+};

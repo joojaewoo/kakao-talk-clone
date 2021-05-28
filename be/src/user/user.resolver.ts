@@ -8,8 +8,8 @@ export class UserResolver {
   constructor(private userService: UserService) {}
   @Directive('@auth')
   @Query(() => User)
-  async myInfo(@Context() { authUser }: { authUser: string }) {
-    const info = await this.userService.getMyInfo(authUser);
+  async myInfo(@Context() { authUser: { id } }: { authUser: { id: string } }) {
+    const info = await this.userService.getMyInfo(id);
     return info;
   }
   @Directive('@auth')
@@ -23,7 +23,7 @@ export class UserResolver {
     @Args('nickName') nickName: string,
     @Args('password') password: string,
   ) {
-    return this.userService.createUser(email, nickName, password);
+    return this.userService.createUser(email, password, nickName);
   }
 
   @Mutation(() => Boolean)

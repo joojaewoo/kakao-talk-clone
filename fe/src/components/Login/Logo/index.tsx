@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import LogoIcon from '../../Reusable/Icons/Logo';
+import { LogoIcon } from '../../Reusable/Icons';
 import Container from './styled';
 
 const Logo: FC = () => (

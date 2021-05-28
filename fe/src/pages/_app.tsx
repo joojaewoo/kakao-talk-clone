@@ -4,11 +4,11 @@ import { ThemeProvider } from '@emotion/react';
 import { ApolloProvider } from '@apollo/client';
 import theme from '../theme';
 import GlobalStyle from '../theme/global';
-import getApolloClient from '../libs/apolloClient';
+import { initializeApollo } from '../libs/apolloClient';
 import AuthProvider from '../libs/authProvider';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const apolloClient = getApolloClient();
+  const apolloClient = initializeApollo(pageProps.initialState);
 
   return (
     <>
