@@ -1,24 +1,26 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Container,
-  ImageContainer,
-  NickNameContainer,
-  StateMessageContainer,
-  TextContainer,
-} from './styled';
-import UserIcon from '../../Reusable/Icons/User';
+import { Container, NickNameContainer, StateMessageContainer, TextContainer } from './styled';
+import Image from '../../Reusable/Image';
 
 interface Props {
   imageUrl?: string;
   nickName: string;
   stateMessage?: string;
+  width?: string;
+  height?: string;
+  isMy?: boolean;
 }
 
-const Profile: FunctionComponent<Props> = ({ imageUrl, nickName, stateMessage }) => (
-  <Container>
-    <ImageContainer>
-      {imageUrl ? <img src={imageUrl} alt="profileImage" /> : <UserIcon />}
-    </ImageContainer>
+const Profile: FunctionComponent<Props> = ({
+  imageUrl,
+  nickName,
+  stateMessage,
+  width = '60px',
+  height = '60px',
+  isMy = false,
+}) => (
+  <Container isMy={isMy}>
+    <Image imageUrl={imageUrl} width={width} height={height} />
     <TextContainer>
       <NickNameContainer>{nickName}</NickNameContainer>
       <StateMessageContainer>{stateMessage}</StateMessageContainer>
