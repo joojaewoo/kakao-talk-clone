@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import getApolloClient from '../../libs/apolloClient';
+import { getApolloClient } from '../../libs/apolloClient';
 import Login from './index';
 
 export default {

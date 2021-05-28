@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ApolloProvider } from '@apollo/client';
-import getApolloClient from '../../../libs/apolloClient';
+import { getApolloClient } from '../../../libs/apolloClient';
 import Input from './index';
 
 export default {
