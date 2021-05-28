@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Buttons from './Buttons';
 import Image from './Image';
-import XIcon from '../Reusable/Icons/X';
+import { XIcon } from '../Reusable/Icons';
 import { BackgroundContainer, ButtonContainer, ImgContainer, BackButton } from './styled';
 
 const Profile = () => {

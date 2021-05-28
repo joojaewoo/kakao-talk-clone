@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import ChatIcon from '../../Reusable/Icons/Chat';
-import EditIcon from '../../Reusable/Icons/Edit';
-import { Button, Container, ButtonContainer, TextContainer } from './styled';
+import { ChatIcon, EditIcon } from '../../Reusable/Icons';
+import Button from '../../Reusable/Button';
+import { Container, ButtonContainer, TextContainer } from './styled';
 
 interface Props {
   isMyProfile: boolean;
@@ -12,13 +12,13 @@ const MyProfileButtons: FunctionComponent<Props> = ({ isMyProfile }) => (
     {isMyProfile ? (
       <Container>
         <ButtonContainer>
-          <Button type="button">
+          <Button type="button" width="30px" height="30px" margin="5px 15px">
             <ChatIcon />
           </Button>
           <TextContainer>나와의 채팅</TextContainer>
         </ButtonContainer>
         <ButtonContainer>
-          <Button type="button">
+          <Button type="button" width="30px" height="30px" margin="5px 15px">
             <EditIcon />
           </Button>
           <TextContainer>프로필 수정</TextContainer>
@@ -27,7 +27,7 @@ const MyProfileButtons: FunctionComponent<Props> = ({ isMyProfile }) => (
     ) : (
       <Container>
         <ButtonContainer>
-          <Button type="button">
+          <Button type="button" width="30px" height="30px" margin="5px 15px">
             <ChatIcon />
           </Button>
           <TextContainer>1:1 채팅</TextContainer>
