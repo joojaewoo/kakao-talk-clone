@@ -10,10 +10,11 @@ export const Default = () => {
   const [inputs, setInputs] = useState({
     pwd: '',
     pwdChk: '',
+    isSamePwd: false,
   });
 
-  const { pwd, pwdChk } = inputs;
-
+  const { pwd, pwdChk, isSamePwd } = inputs;
+  const setValues = (name: string, value: boolean) => setInputs({ ...inputs, [name]: value });
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setInputs({
@@ -21,5 +22,13 @@ export const Default = () => {
       [name]: value,
     });
   };
-  return <PasswordInput text={pwd} onChange={onChange} textChk={pwdChk} />;
+  return (
+    <PasswordInput
+      text={pwd}
+      onChange={onChange}
+      textChk={pwdChk}
+      isSamePwd={isSamePwd}
+      setValues={setValues}
+    />
+  );
 };

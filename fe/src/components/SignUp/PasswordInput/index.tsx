@@ -1,14 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Input from '../Input';
 
 interface Props {
   text: string;
   textChk: string;
+  isSamePwd: boolean;
+  setValues: (name: string, value: boolean) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PasswordInput: FC<Props> = ({ text, onChange, textChk }) => {
-  const flag = text === textChk;
+const PasswordInput: FC<Props> = ({ text, onChange, textChk, isSamePwd, setValues }) => {
+  useEffect(() => {
+    if (text === textChk) setValues('isSamePwd', true);
+    else setValues('isSamePwd', false);
+  }, [text, textChk]);
   return (
     <div>
       <div>비밀번호</div>
@@ -26,7 +31,7 @@ const PasswordInput: FC<Props> = ({ text, onChange, textChk }) => {
         name="pwdChk"
         type="password"
       />
-      {!flag ? <div>비밀번호가 다릅니다</div> : null}
+      {!isSamePwd ? <div>비밀번호가 다릅니다</div> : null}
     </div>
   );
 };

@@ -17,13 +17,13 @@ export class UserResolver {
   async friends() {
     return this.userService.getFriends();
   }
-  @Mutation(() => User)
+  @Mutation(() => Boolean)
   async createUser(
     @Args('email') email: string,
     @Args('nickName') nickName: string,
     @Args('password') password: string,
   ) {
-    return this.userService.createUser(email, password, nickName);
+    return await this.userService.createUser(email, password, nickName);
   }
 
   @Mutation(() => Boolean)
