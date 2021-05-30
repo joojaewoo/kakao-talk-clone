@@ -44,12 +44,13 @@ const SignUp: FC = () => {
     if (!pwd || !pwdChk) return alert('비밀번호를 입력해주세요!');
     if (!isSamePwd) return alert('비밀번호가 일치하지 않습니다!');
     if (!nickname) return alert('닉네임을 입력해주세요');
-    const {
-      data: { createUser: result },
-    } = await signUp({ variables: { email, password: pwd, nickName: nickname } });
-    if (!result) return alert('다시 시도해주세요');
-
-    return router.replace('/login');
+    throttle(async () => {
+      const {
+        data: { createUser: result },
+      } = await signUp({ variables: { email, password: pwd, nickName: nickname } });
+      if (!result) return alert('다시 시도해주세요');
+      return router.replace('/login');
+    }, 400);
   };
 
   return (

@@ -3,20 +3,24 @@ import { useMutation } from '@apollo/client';
 import router from 'next/router';
 import { LOCAL_LOGIN } from '../../../graphql/user';
 import { StyledInput, StyledButton } from './styled';
+import { throttle } from '../../../libs/utils';
 
 const Input: FC = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
-  const [login, { data }] = useMutation(LOCAL_LOGIN);
+  const [login] = useMutation(LOCAL_LOGIN);
 
-  const clickButton = async (id: string, password: string) => {
-    if (!id) alert('이메일을 입력해주세요');
-    else if (!password) alert('패스워드를 입력해주세요');
-    else {
-      await login({ variables: { email: id, password } });
-      if (!data) alert('이메일 또는 비밀번호가 틀립니다!');
-      else router.replace('/');
-    }
+  const clickButton = async (email: string, password: string) => {
+    if (!email) return alert('이메일을 입력해주세요');
+    if (!password) return alert('패스워드를 입력해주세요');
+    throttle(async () => {
+      const {
+        data: { login: result },
+      } = await login({ variables: { email, password } });
+
+      if (!result) return alert('이메일 또는 비밀번호가 틀립니다!');
+      return router.replace('/');
+    }, 300);
   };
 
   return (
