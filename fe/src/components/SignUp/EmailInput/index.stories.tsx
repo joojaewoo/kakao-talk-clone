@@ -7,12 +7,13 @@ export default {
 };
 
 export const Default = () => {
-  const [inputs, setInputs] = useState({ email: '' });
+  const [inputs, setInputs] = useState({ email: '', isAuth: false });
 
-  const { email } = inputs;
+  const { email, isAuth } = inputs;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setInputs({ ...inputs, [name]: value });
   };
-  return <EmailInput text={email} onChange={onChange} />;
+  const setValues = (name: string, value: boolean) => setInputs({ ...inputs, [name]: value });
+  return <EmailInput text={email} onChange={onChange} isAuth={isAuth} setValues={setValues} />;
 };
