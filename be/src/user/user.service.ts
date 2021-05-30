@@ -11,9 +11,10 @@ export class UserService {
     const user = await this.userModel.find();
     return user;
   }
-  async createUser(email: string, password: string, nickName: string): Promise<User> {
+  async createUser(email: string, password: string, nickName: string): Promise<Boolean> {
     const createUser = new this.userModel({ email, password, nickName });
-    return createUser.save();
+    createUser.save();
+    return true;
   }
   async getMyInfo(_id: string): Promise<User> {
     const myInfo = await this.userModel.findById({ _id });
@@ -23,5 +24,9 @@ export class UserService {
     const { _id: id } = (await this.userModel.findOne({ email, password })) || {};
     if (!id) return null;
     else return signToken(id);
+  }
+  async getInfo(email: string): Promise<User> {
+    const info = await this.userModel.findOne({ email });
+    return info;
   }
 }
