@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 import { AuthDirective } from './utils/authDirective';
 import { verifyToken } from './utils/jwt';
 
@@ -14,6 +15,7 @@ import { verifyToken } from './utils/jwt';
       useFindAndModify: false,
     }),
     UserModule,
+    AuthModule,
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       autoSchemaFile: true,
