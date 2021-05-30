@@ -18,7 +18,7 @@ export class AuthService {
         text: '오른쪽 숫자 6자리를 입력해주세요 : ' + number,
       };
       await this.authModel.updateOne({ email }, { auth: number }, { upsert: true });
-      const result = await smtpTransport.sendMail(mailOptions);
+      const result = await smtpTransport().sendMail(mailOptions);
       return true;
     } catch (err) {
       return false;
