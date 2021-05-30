@@ -11,7 +11,6 @@ export class AuthResolver {
   @Mutation(() => Boolean)
   async sendEmail(@Args('email') email: string) {
     const userInfo = await this.userService.getInfo(email);
-    console.log(userInfo);
     if (userInfo) return false;
     return await this.authService.sendEmail(email);
   }
