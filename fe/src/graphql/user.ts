@@ -11,7 +11,7 @@ export const MY_INFO = gql`
 `;
 
 export const USER_INFO = gql`
-  query ($id: string) {
+  query ($id: String!) {
     useinfo(id: $id) {
       _id
       email
@@ -20,8 +20,26 @@ export const USER_INFO = gql`
   }
 `;
 
+export const CREATE_USER = gql`
+  mutation ($email: String!, $password: String!, $nickName: String!) {
+    createUser(password: $password, email: $email, nickName: $nickName)
+  }
+`;
+
 export const LOCAL_LOGIN = gql`
   mutation ($email: String!, $password: String!) {
     login(email: $email, password: $password)
+  }
+`;
+
+export const AUTH_EMAIL = gql`
+  mutation ($email: String!, $auth: String!) {
+    authEmail(email: $email, auth: $auth)
+  }
+`;
+
+export const SEND_EMAIL = gql`
+  mutation ($email: String!) {
+    sendEmail(email: $email)
   }
 `;
