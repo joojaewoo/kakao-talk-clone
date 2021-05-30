@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { AuthDirective } from './utils/authDirective';
-import { verifyToken } from './utils/jwt';
+import { AuthDirective } from './libs/authDirective';
+import { verifyToken } from './libs/jwt';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/kakao-clone', {
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.DB_URL, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
@@ -26,7 +28,7 @@ import { verifyToken } from './utils/jwt';
       },
       schemaDirectives: { auth: AuthDirective },
       cors: {
-        origin: 'http://localhost:3000',
+        origin: process.env.FE_URL,
         credentials: true,
       },
     }),
