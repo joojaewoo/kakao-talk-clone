@@ -18,7 +18,19 @@ export class User {
 
   @Field(() => String)
   @Prop()
+  stateMessage: String;
+
+  @Field(() => String)
+  @Prop()
+  imageUrl: String;
+
+  @Field(() => String)
+  @Prop()
   password: String;
+
+  @Field(() => [String])
+  @Prop()
+  friendList: String[];
 }
 
 export type UserDocument = User & Document;

@@ -2,8 +2,8 @@ import { InMemoryCache, createHttpLink, ApolloClient, NormalizedCacheObject } fr
 
 export const getApolloClient = (() => {
   let apolloClient: ApolloClient<NormalizedCacheObject>;
-  return () => {
-    if (!apolloClient) {
+  return (flag = false) => {
+    if (flag || !apolloClient) {
       apolloClient = new ApolloClient({
         cache: new InMemoryCache({}),
         link: createHttpLink({

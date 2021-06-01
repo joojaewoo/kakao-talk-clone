@@ -10,15 +10,13 @@ interface Props {
 const AuthProvider: FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
   const { data, error } = useQuery(MY_INFO);
-
   if (
     router.pathname.includes('login') ||
     router.pathname.includes('callback') ||
-    router.pathname.includes('signup')
+    router.pathname.includes('signup') ||
+    data
   )
     return <>{children}</>;
-
-  if (data) return <>{children}</>;
   if (error) router.push('/login');
   return <div>loading</div>;
 };

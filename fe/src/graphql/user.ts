@@ -11,11 +11,23 @@ export const MY_INFO = gql`
 `;
 
 export const USER_INFO = gql`
-  query ($id: String!) {
-    useinfo(id: $id) {
+  query ($userId: String!) {
+    userInfo(userId: $userId) {
       _id
-      email
+      stateMessage
+      imageUrl
       nickName
+    }
+  }
+`;
+
+export const FRIEND_LIST = gql`
+  query {
+    friends {
+      _id
+      nickName
+      stateMessage
+      imageUrl
     }
   }
 `;
