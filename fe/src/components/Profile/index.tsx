@@ -1,13 +1,22 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useQuery } from '@apollo/client';
 import Buttons from './Buttons';
 import Image from './Image';
 import { XIcon } from '../Reusable/Icons';
 import { BackgroundContainer, ButtonContainer, ImgContainer, BackButton } from './styled';
+import { MY_INFO, USER_INFO } from '../../graphql/user';
 
 const Profile = () => {
-  const flag = true;
   const router = useRouter();
+  const { userId } = router.query || {};
+  const {
+    data: { myInfo },
+  } = useQuery(MY_INFO);
+  const {
+    data: { userInfo },
+  } = useQuery(USER_INFO, { variables: { userId } });
+  const flag = myInfo._id === userInfo._id;
   return (
     <>
       <BackgroundContainer>
@@ -15,10 +24,7 @@ const Profile = () => {
           <XIcon />
         </BackButton>
         <ImgContainer>
-          <Image
-            name="주재우"
-            imageUrl="https://user-images.githubusercontent.com/46195613/119775073-0f253780-befe-11eb-971f-d388c738a545.jpg"
-          />
+          <Image name={userInfo.nickName} imageUrl={userInfo.imageUrl} />
         </ImgContainer>
         <ButtonContainer>
           <Buttons isMyProfile={flag} />
