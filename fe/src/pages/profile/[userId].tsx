@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       headers: { cookie: `jwt=${jwt}` },
     },
   });
-  if (!data.user) {
+  if (!data.userInfo) {
     return {
       notFound: true,
     };
