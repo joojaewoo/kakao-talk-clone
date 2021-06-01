@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import FriendListPage from '../components/FriendList';
-import { MY_INFO } from '../graphql/user';
+import { FRIEND_LIST } from '../graphql/user';
 import { getApolloClient } from '../libs/apolloClient';
 import { getCookies } from '../libs/utils';
 
@@ -11,16 +11,14 @@ export default FriendList;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const jwt = getCookies(ctx);
-  const { userId } = ctx.query || {};
   const apolloClient = getApolloClient();
   const { data } = await apolloClient.query({
-    query: MY_INFO,
-    variables: { userId },
+    query: FRIEND_LIST,
     context: {
       headers: { cookie: `jwt=${jwt}` },
     },
   });
-  if (!data.user) {
+  if (!data.friends) {
     return {
       notFound: true,
     };
