@@ -6,23 +6,15 @@ import Profile from './Profile';
 import Button from '../Reusable/Button';
 import { SearchIcon, AddUserIcon } from '../Reusable/Icons';
 import Container from './styled';
+import { FRIEND_LIST, MY_INFO } from '../../graphql/user';
 
 const FriendList = () => {
-  const list = [];
-  const myInfo = {
-    imageUrl:
-      'https://user-images.githubusercontent.com/46195613/119775073-0f253780-befe-11eb-971f-d388c738a545.jpg',
-    nickName: 'joojaewoo',
-    id: -5,
-    stateMessage: '좋은하루',
-  };
-  for (let i = 0; i < 10; i += 1)
-    list.push({
-      imageUrl:
-        'https://user-images.githubusercontent.com/46195613/119775073-0f253780-befe-11eb-971f-d388c738a545.jpg',
-      nickName: i,
-      id: 5 * i,
-    });
+  const {
+    data: { friends },
+  } = useQuery(FRIEND_LIST);
+  const {
+    data: { myInfo },
+  } = useQuery(MY_INFO);
 
   return (
     <>
@@ -35,11 +27,11 @@ const FriendList = () => {
         </Button>
       </Header>
       <Container>
-        <Link href={`/${myInfo.id}`}>
+        <Link href={`/profile/${myInfo._id}`}>
           <a>
             <Profile
               nickName={myInfo.nickName}
-              key={myInfo.id}
+              key={myInfo._id}
               imageUrl={myInfo.imageUrl}
               stateMessage={myInfo.stateMessage}
               width="70px"
@@ -48,20 +40,17 @@ const FriendList = () => {
             />
           </a>
         </Link>
-        {list && list.length
-          ? list.map(({ imageUrl, stateMessage, nickName, id }) => (
-              <Link href={`/${id}`}>
-                <a>
-                  <Profile
-                    nickName={nickName}
-                    key={id}
-                    imageUrl={imageUrl}
-                    stateMessage={stateMessage}
-                  />
-                </a>
-              </Link>
-            ))
-          : null}
+        {friends && friends.length ? (
+          friends.map(({ imageUrl, stateMessage, nickName, _id: id }) => (
+            <Link href={`/profile/${id}`} key={id}>
+              <a>
+                <Profile nickName={nickName} imageUrl={imageUrl} stateMessage={stateMessage} />
+              </a>
+            </Link>
+          ))
+        ) : (
+          <div>친구를 추가하세요</div>
+        )}
       </Container>
     </>
   );
