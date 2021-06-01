@@ -13,9 +13,15 @@ export class UserResolver {
     return info;
   }
   @Directive('@auth')
+  @Query(() => User)
+  async userInfo(@Args('userId') userId: string) {
+    const info = await this.userService.getUserInfo(userId);
+    return info;
+  }
+  @Directive('@auth')
   @Query(() => [User])
-  async friends() {
-    return this.userService.getFriends();
+  async friends(@Context() { authUser: { id } }: { authUser: { id: string } }) {
+    return this.userService.getFriends(id);
   }
   @Mutation(() => Boolean)
   async createUser(
