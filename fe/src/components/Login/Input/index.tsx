@@ -1,14 +1,18 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import router from 'next/router';
 import { LOCAL_LOGIN } from '../../../graphql/user';
 import { StyledInput, StyledButton } from './styled';
+import { getApolloClient } from '../../../libs/apolloClient';
 import { throttle } from '../../../libs/utils';
 
 const Input: FC = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [login] = useMutation(LOCAL_LOGIN);
+  useEffect(() => {
+    getApolloClient(true);
+  }, []);
 
   const clickButton = async (email: string, password: string) => {
     if (!email) return alert('이메일을 입력해주세요');
