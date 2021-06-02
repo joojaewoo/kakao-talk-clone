@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import Header from '../Reusable/Header';
-import Profile from './Profile';
+import Profile from '../Reusable/Profile';
 import Button from '../Reusable/Button';
 import { SearchIcon, AddUserIcon } from '../Reusable/Icons';
 import Container from './styled';

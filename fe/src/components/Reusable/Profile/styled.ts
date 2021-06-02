@@ -13,8 +13,8 @@ export const Container = styled.div<Props>`
 `;
 
 export const TextContainer = styled.div`
-  width: 60%;
-  padding: 10px 20px;
+  width: 70%;
+  padding: 0px 10px;
 `;
 
 export const NickNameContainer = styled.div`

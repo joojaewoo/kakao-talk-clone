@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Container, NickNameContainer, StateMessageContainer, TextContainer } from './styled';
-import Image from '../../Reusable/Image';
+import Image from '../Image';
 
 interface Props {
   imageUrl?: string;
@@ -9,6 +9,7 @@ interface Props {
   width?: string;
   height?: string;
   isMy?: boolean;
+  time?: string;
 }
 
 const Profile: FunctionComponent<Props> = ({
@@ -18,6 +19,7 @@ const Profile: FunctionComponent<Props> = ({
   width = '60px',
   height = '60px',
   isMy = false,
+  time,
 }) => (
   <Container isMy={isMy}>
     <Image imageUrl={imageUrl} width={width} height={height} />
@@ -25,6 +27,7 @@ const Profile: FunctionComponent<Props> = ({
       <NickNameContainer>{nickName}</NickNameContainer>
       <StateMessageContainer>{stateMessage}</StateMessageContainer>
     </TextContainer>
+    <div>{time}</div>
   </Container>
 );
 
