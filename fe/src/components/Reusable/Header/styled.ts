@@ -9,7 +9,7 @@ export const FlexDiv = styled.div`
   top: 0;
   padding: 10px;
   z-index: 1;
-  height: 50px;
+  height: 70px;
   background-color: white;
 `;
 
