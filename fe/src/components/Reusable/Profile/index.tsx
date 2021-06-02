@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Container, NickNameContainer, StateMessageContainer, TextContainer } from './styled';
-import Image from '../../Reusable/Image';
+import Image from '../Image';
 
 interface Props {
   imageUrl?: string;
