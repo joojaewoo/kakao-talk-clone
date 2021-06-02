@@ -9,10 +9,10 @@ interface Props {
 export default styled.button<Props>`
   border: none;
   border-radius: 100%;
-  margin: ${(props) => props.margin || '0 5px'};
+  margin: ${(props) => props.margin || '5px'};
   & > svg {
-    width: ${(props) => props.width || '20px'};
-    height: ${(props) => props.height || '20px'};
+    width: ${(props) => props.width || '30px'};
+    height: ${(props) => props.height || '30px'};
     padding: 5px;
   }
 `;
